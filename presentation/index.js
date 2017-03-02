@@ -52,62 +52,69 @@ const theme = createTheme({
 
 const meetup = {
     name: "GroningenPHP",
-    date: "02-02-2017",
+    date: "02-03-2017",
     talk: {
         title: "Practical IoT for webdevelopers",
         speaker: "Elze Kool"
     },
+    talks: [
+        {
+            title: "Let's Encrypt",
+            speaker: "Yannick Forget"
+        },
+        {
+            title: "Grav CMS",
+            speaker: "Steffen Witvliet"
+        },
+        {
+            title: "Improving code quality with static analysis tools",
+            speaker: "Mark Redeman"
+        }
+    ],
     location: "Launch Café Groningen",
     // List upcoming meetups nearby Groningen,
     // meetups with no talks have not yet listed the talk on meetup
     nearby: [
         {
             name: "Php.frl",
-            date: "21-02-2017",
-            talks: [
-                {
-                    title: "Why every developer should read Plato ",
-                    speaker: "Omar Reiss",
-                    language: "dutch"
-                }
-            ],
+            date: "21-03-2017",
+            talks: [],
             location: "Friesland"
         },
         {
             name: "HardenbergPHP",
-            date: "23-02-2017",
-            talks: [
-                {
-                    title: "OTAP straat & showcase ",
-                    speaker: "Bert Oost",
-                    language: "dutch"
-                },
-                {
-                    title: "Docker container platform ",
-                    speaker: "Tom Keur",
-                    language: "dutch"
-                }
-            ],
-            location: "Vrieling Adviesgroep - Hardenberg"
+            date: "18-03-2017",
+            talks: [],
+            location: "Hardenberg"
         },
         {
             name: "ZwollePHP",
-            date: "23-02-2017",
+            date: "30-03-2017",
             talks: [
             ],
-            location: "Texemus - Zwolle"
+            location: "Zwolle"
         },
         {
             name: "EmmenPHP",
             date: "01-03-2017",
             talks: [
+                {
+                    title: "Scrum, customer interests first ",
+                    speaker: "Jeroen Boersma",
+                    language: "dutch"
+                }
             ] ,
-            location: "Bakerware - Emmen"
+            location: "Prima Professionals - Emmen"
         },
         {
             name: "GroningenPHP",
             date: "02-03-1017",
             talks: [
+                {
+                    title: "Enough suffering, fix your architecture!",
+                    speaker: "Luís Cobucci",
+                    language: "english"
+                }
             ],
             location: "Launch Café - Groningen"
         }
@@ -128,7 +135,7 @@ export default class Presentation extends React.Component {
           </Heading>
           <List>
               <ListItem><strong>19:30 - 20:00</strong> : Welcome drinks</ListItem>
-              <ListItem><strong>20:00 - 21:00</strong> : Talk & Questions</ListItem>
+              <ListItem><strong>20:00 - 21:00</strong> : Talks & Questions</ListItem>
               <ListItem><strong>21:00 - ??</strong> : Social & drinks</ListItem>
           </List>
         </Slide>
@@ -151,12 +158,14 @@ export default class Presentation extends React.Component {
              })}
           </List>
         </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>{ meetup.talk.title}</Quote>
-            <Cite>{meetup.talk.speaker}</Cite>
-          </BlockQuote>
-        </Slide>
+        {meetup.talks.map((talk) => {
+             return <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+                 <BlockQuote>
+                     <Quote>{talk.title}</Quote>
+                     <Cite textColor="#D7EAC9">{talk.speaker}</Cite>
+                 </BlockQuote>
+             </Slide>
+         })}
       </Deck>
     );
   }
